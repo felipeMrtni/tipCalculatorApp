@@ -38,8 +38,8 @@ body {
     padding: 2rem;
     width: 100%;
     height: 45rem;
-    /* min-height: 45rem; */
-    border-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
 }
 
 .bill-box {
@@ -59,7 +59,6 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    /* width: 100%; */
 }
 
 .input-box input {
@@ -112,20 +111,65 @@ body {
     color: hsl(0, 0%, 100%);
     border-radius: 0.5rem;
     background: hsl(183, 100%, 15%);
+    outline: none;
 }
 
 .option:focus {
-    background: hsl(172, 67%, 45%)
+    background: hsl(172, 67%, 45%);
+    color: hsl(183, 100%, 15%);
 }
 
 .people-box {
+    height: 100%;
     width: 100%;
-    border: 2px solid black;
+    margin-bottom: 0.5rem;
 }
 
 .result-box {
+    display: flex;
+    flex-direction: column;
+    background: hsl(183, 100%, 15%);
+    border-radius: 1rem;
     width: 100%;
-    border: 2px solid black;
+    padding: 1.5rem;
+}
+
+.info-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    margin: 1rem 0;
+}
+
+.text-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 3rem;
+}
+
+.result-header{
+    color: hsl(0, 0%, 100%);
+}
+
+.splitters {
+    font-size: 0.8rem;
+    color: hsl(186, 14%, 43%);
+}
+
+.result {
+    font-size: 2rem;
+    color: hsl(172, 67%, 45%);
+}
+
+#reset-btn {
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    color: hsl(183, 100%, 15%);
+    background: hsl(172, 67%, 45%);
+    outline: none;
 }
 
 
