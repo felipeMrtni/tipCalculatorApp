@@ -80,6 +80,10 @@ body {
     color: hsl(186, 14%, 43%)
 }
 
+.input-box input:focus::placeholder {
+    color: transparent;
+}
+
 .icon {
     position: absolute;
     left: 1rem;
@@ -112,6 +116,7 @@ body {
     border-radius: 0.5rem;
     background: hsl(183, 100%, 15%);
     outline: none;
+    border: none;
 }
 
 .option:focus {
@@ -119,7 +124,22 @@ body {
     color: hsl(183, 100%, 15%);
 }
 
+#custom-value {
+    text-align: end;
+    background: hsl(189, 41%, 97%);
+}
+
+#custom-value:focus::placeholder{
+    color: transparent;
+}
+
+#custom-value::placeholder {
+    color: hsl(186, 14%, 43%)
+}
+
 .people-box {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     margin-bottom: 0.5rem;
@@ -170,6 +190,10 @@ body {
     color: hsl(183, 100%, 15%);
     background: hsl(172, 67%, 45%);
     outline: none;
+}
+
+#reset-btn:active {
+    background: hsl(183, 100%, 15%);
 }
 
 
