@@ -1,8 +1,11 @@
 *{
     box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
 }
 
 body {
+    font-family: 'Space Mono', monospace;
+    /* font-weight: 700; */
     background: hsl(185, 41%, 84%);
     height: 100vh;
     width: 100vw;
@@ -32,23 +35,66 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 1.5rem;
 }
 
 .bill-box {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+}
+
+.box-header {
+    color: hsl(186, 14%, 43%);
+    margin-bottom: 0.5rem;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* width: 100%; */
+}
+
+.input-box input {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: hsl(183, 100%, 15%);
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    text-align: end;
+    outline: none;
+    border: none;
+    background: hsl(189, 41%, 97%);
+}
+
+.input-box input::placeholder {
+    opacity: 0.5;
+    color: hsl(186, 14%, 43%)
+}
+
+.icon {
+    position: absolute;
+    left: 1rem;
 }
 
 .tip-box {
     width: 100%;
+    border: 2px solid black;
 }
 
 .people-box {
     width: 100%;
+    border: 2px solid black;
 }
 
 .result-box {
     width: 100%;
+    border: 2px solid black;
 }
 
 
