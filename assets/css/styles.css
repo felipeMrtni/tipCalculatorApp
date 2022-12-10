@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background: hsl(185, 41%, 84%);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    /* justify-content: flex-start; */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+
+}
+
+.calculator-box {
+    background: hsl(0, 0%, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.bill-box {
+    width: 100%;
+}
+
+.tip-box {
+    width: 100%;
+}
+
+.people-box {
+    width: 100%;
+}
+
+.result-box {
+    width: 100%;
+}
+
+
