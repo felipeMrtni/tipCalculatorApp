@@ -3,6 +3,7 @@ const customRef = document.querySelector("#custom-value");
 const peopleRef = document.querySelector("#people-value");
 const valueRef = document.querySelector(".value");
 const totalRef = document.querySelector("#total-each");
+const totalTipRef = document.querySelector("#tip-each");
 const optionRef = document.querySelectorAll(".btn");
 const resetRef = document.querySelector("#reset-btn");
 
@@ -22,12 +23,14 @@ for(let i = 0; i < optionRef.length; i++){
             console.log("reconheceu active")
             optionRef[i].classList.remove('active-option')
             tipValue = 1;
+            totalTipCalc(billValue, peopleValue, tipValue);
             totalCalc(billValue, peopleValue, tipValue);
         }
         if(optionRef[i] !== optionActive){
             tipValue = optionRef[i].value;
             optionRef[i].classList.toggle('active-option');
             console.log("clicou em -> "+ tipValue);
+            totalTipCalc(billValue, peopleValue, tipValue);
             totalCalc(billValue, peopleValue, tipValue);
         }
     })
@@ -36,8 +39,6 @@ for(let i = 0; i < optionRef.length; i++){
 function removeActive (){
     optionRef.forEach((item) => (item.classList.remove("active-option")))
 }
-
-
 
 // -------------------------- INPUT -----------------------------
 
@@ -56,24 +57,13 @@ function getValue(){
         });
 
         customRef.addEventListener('input', () => {
-            tipValue = 1;
+            // tipValue = 1;
             removeActive();
-            console.log("ativou custom ref")
+            console.log("ativou custom ref");
             getCustomValue();
-            totalCalc(billValue, peopleValue, tipValue)
+            totalTipCalc(billValue, peopleValue, tipValue);
+            totalCalc(billValue, peopleValue, tipValue);
         });
-    }
-}
-
-getValue();
-
-function totalCalc(bill, people) {
-    const totalRef = document.querySelector("#total-each");
-    console.log("entrou no totalCalc");
-    if(billValue > 0 && peopleValue > 0){
-        console.log("entrou no if do totalcalc")
-        totalResult = (bill/people*tipValue).toFixed(2);
-        totalRef.innerHTML = `$${totalResult}`;
     }
 }
 
@@ -110,10 +100,34 @@ function getCustomValue() {
     }
 }
 
+getValue();
+
+// ----------------------- CALCULATION --------------------------
+
+function totalCalc(bill, people, tip) {
+    console.log("entrou no totalCalc");
+    if(billValue > 0 && peopleValue > 0){
+        console.log("entrou no if do totalcalc")
+        totalResult = (bill/people*tip).toFixed(2);
+        totalRef.innerHTML = `$${totalResult}`;
+    }
+}
+
+function totalTipCalc(bill, people, tip){
+    if(tipValue > 0 && bill > 0 && people > 0){
+        console.log("entrou no totalTipCalc - tipValue => "+tipValue)
+        totalTip = ((tip - 1)*bill/people).toFixed(2);
+        totalTipRef.innerHTML = `$${totalTip}`;
+    }
+}
+
+// ------------------------- RESET ------------------------------
+
 resetRef.addEventListener('click', () => {
-    totalRef.innerHTML = `$0.00`
-    billValue = 0
-    peopleValue = 0
+    totalTipRef.innerHTML = `$0.00`;
+    totalRef.innerHTML = `$0.00`;
+    billValue = 0;
+    peopleValue = 0;
     tipValue = 1;
     removeActive();
 })
