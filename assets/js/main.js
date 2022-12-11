@@ -1,16 +1,17 @@
 const billRef = document.querySelector("#bill-value");
-const customRef = document.querySelector("#costum-value");
+const customRef = document.querySelector("#custom-value");
 const peopleRef = document.querySelector("#people-value");
 const valueRef = document.querySelector(".value");
 const totalRef = document.querySelector("#total-each");
-const optionRef = document.querySelectorAll(".option");
+const optionRef = document.querySelectorAll(".btn");
+
 
 let billValue;
 let peopleValue;
 let tipValue = 1;
 let valueRule = /^[0-9.]+$/;
 
-
+// ------------------------ SELECT TIP % -----------------------------------
 for(let i = 0; i < optionRef.length; i++){
     optionRef[i].addEventListener('click', () => {
         const optionActive = document.querySelector('.active-option');
@@ -35,6 +36,9 @@ function removeActive (){
 }
 
 
+
+// -------------------------- INPUT -----------------------------
+
 function getValue(){
     if(billRef.value !== 0 || peopleRef !== 0){
         console.log("entrou no get value")
@@ -47,7 +51,15 @@ function getValue(){
         peopleRef.addEventListener('input', () => {
             getPeopleValue();
             totalCalc(billValue, peopleValue, tipValue);
-        })
+        });
+
+        customRef.addEventListener('input', () => {
+            tipValue = 1;
+            removeActive();
+            console.log("ativou custom ref")
+            getCustomValue();
+            totalCalc(billValue, peopleValue, tipValue)
+        });
     }
 }
 
@@ -85,3 +97,13 @@ function getPeopleValue() {
     }
 }
 
+function getCustomValue() {
+    console.log("entrou no getCustomValue")
+    if(!valueRule.test(customRef.value)){
+        return;
+    } else {
+        tipValue = +customRef.value/100+1;
+        console.log(tipValue)
+        return tipValue;
+    }
+}
