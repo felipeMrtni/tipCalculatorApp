@@ -238,6 +238,7 @@ body {
 @media (min-width: 1024px) {
     .container {
         max-width: 60rem;
+        padding: 10% 0;
     }
     
     .logo-box {
