@@ -6,6 +6,7 @@ const totalRef = document.querySelector("#total-each");
 const totalTipRef = document.querySelector("#tip-each");
 const optionRef = document.querySelectorAll(".btn");
 const resetRef = document.querySelector("#reset-btn");
+const errorRef = document.querySelector(".error-message");
 
 let billValue;
 let peopleValue;
@@ -16,7 +17,7 @@ let valueRule = /^[0-9.]+$/;
 for(let i = 0; i < optionRef.length; i++){
     optionRef[i].addEventListener('click', (event) => {
         event.preventDefault();
-
+        customRef.value = '';
         const optionActive = document.querySelector('.active-option');
         removeActive();
         if(optionActive){
@@ -83,7 +84,14 @@ function getPeopleValue() {
     if(!valueRule.test(peopleRef.value)){
         return;
     } else {
+        errorRef.classList.remove('active-error')
         peopleValue = +peopleRef.value;
+        if(peopleValue === 0) {
+            errorRef.classList.toggle('active-error');
+            totalTipRef.innerHTML = `$0.00`;
+            totalRef.innerHTML = `$0.00`;
+            return
+        }
         console.log(peopleValue)
         return peopleValue;
     }
@@ -106,11 +114,11 @@ getValue();
 
 function totalCalc(bill, people, tip) {
     console.log("entrou no totalCalc");
-    if(billValue > 0 && peopleValue > 0){
+    if(bill > 0 && people > 0){
         console.log("entrou no if do totalcalc")
         totalResult = (bill/people*tip).toFixed(2);
         totalRef.innerHTML = `$${totalResult}`;
-    }
+    } 
 }
 
 function totalTipCalc(bill, people, tip){
@@ -123,11 +131,19 @@ function totalTipCalc(bill, people, tip){
 
 // ------------------------- RESET ------------------------------
 
-resetRef.addEventListener('click', () => {
+
+function resetInfo () {
     totalTipRef.innerHTML = `$0.00`;
     totalRef.innerHTML = `$0.00`;
     billValue = 0;
     peopleValue = 0;
+    totalResult = 0;
+    totalTip = 0;
     tipValue = 1;
+    errorRef.classList.remove('active-error')
+}
+
+resetRef.addEventListener('click', () => {
+    resetInfo();
     removeActive();
 })
