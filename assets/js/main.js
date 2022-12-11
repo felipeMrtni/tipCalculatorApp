@@ -4,7 +4,7 @@ const peopleRef = document.querySelector("#people-value");
 const valueRef = document.querySelector(".value");
 const totalRef = document.querySelector("#total-each");
 const optionRef = document.querySelectorAll(".btn");
-
+const resetRef = document.querySelector("#reset-btn");
 
 let billValue;
 let peopleValue;
@@ -13,7 +13,9 @@ let valueRule = /^[0-9.]+$/;
 
 // ------------------------ SELECT TIP % -----------------------------------
 for(let i = 0; i < optionRef.length; i++){
-    optionRef[i].addEventListener('click', () => {
+    optionRef[i].addEventListener('click', (event) => {
+        event.preventDefault();
+
         const optionActive = document.querySelector('.active-option');
         removeActive();
         if(optionActive){
@@ -107,3 +109,11 @@ function getCustomValue() {
         return tipValue;
     }
 }
+
+resetRef.addEventListener('click', () => {
+    totalRef.innerHTML = `$0.00`
+    billValue = 0
+    peopleValue = 0
+    tipValue = 1;
+    removeActive();
+})
