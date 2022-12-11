@@ -238,12 +238,12 @@ body {
 @media (min-width: 1024px) {
     .container {
         max-width: 60rem;
-        padding: 10% 0;
+        min-height: 40rem;
+        justify-content: center;
     }
     
     .logo-box {
         height: 15rem;
-        padding-top: 3rem;
     }
     
     .calculator-box {
