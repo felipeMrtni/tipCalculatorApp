@@ -3,20 +3,21 @@ const customRef = document.querySelector("#costum-value");
 const peopleRef = document.querySelector("#people-value");
 const valueRef = document.querySelector(".value");
 const totalRef = document.querySelector("#total-each");
-const optionRef = document.querySelector(".option");
+const optionRef = document.querySelectorAll(".option");
 
 let billValue;
 let peopleValue;
+let tipValue = 1;
 let valueRule = /^[0-9.]+$/;
 
-optionRef.addEventListener('click', () => {
-    console.log("clicou")
-})
 
-// function getTipValue {
-
-// }
-
+for(let i = 0; i < optionRef.length; i++){
+    optionRef[i].addEventListener('click', () => {
+        tipValue = optionRef[i].value;
+        console.log("clicou em -> "+ tipValue);
+        totalCalc(billValue, peopleValue, tipValue);
+    })
+}
 
 function getValue(){
     if(billRef.value !== 0 || peopleRef !== 0){
@@ -24,15 +25,13 @@ function getValue(){
 
         billRef.addEventListener('input', () => {
             getBillValue();
-            totalCalc(billValue, peopleValue);
+            totalCalc(billValue, peopleValue, tipValue);
         });
 
         peopleRef.addEventListener('input', () => {
             getPeopleValue();
-            totalCalc(billValue, peopleValue);
+            totalCalc(billValue, peopleValue, tipValue);
         })
-
-
     }
 }
 
@@ -43,9 +42,7 @@ function totalCalc(bill, people) {
     console.log("entrou no totalCalc");
     if(billValue > 0 && peopleValue > 0){
         console.log("entrou no if do totalcalc")
-
-
-        totalResult = (bill/people).toFixed(2);
+        totalResult = (bill/people*tipValue).toFixed(2);
         totalRef.innerHTML = `$${totalResult}`;
     }
 }
