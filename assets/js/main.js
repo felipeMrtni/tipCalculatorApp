@@ -13,11 +13,27 @@ let valueRule = /^[0-9.]+$/;
 
 for(let i = 0; i < optionRef.length; i++){
     optionRef[i].addEventListener('click', () => {
-        tipValue = optionRef[i].value;
-        console.log("clicou em -> "+ tipValue);
-        totalCalc(billValue, peopleValue, tipValue);
+        const optionActive = document.querySelector('.active-option');
+        removeActive();
+        if(optionActive){
+            console.log("reconheceu active")
+            optionRef[i].classList.remove('active-option')
+            tipValue = 1;
+            totalCalc(billValue, peopleValue, tipValue);
+        }
+        if(optionRef[i] !== optionActive){
+            tipValue = optionRef[i].value;
+            optionRef[i].classList.toggle('active-option');
+            console.log("clicou em -> "+ tipValue);
+            totalCalc(billValue, peopleValue, tipValue);
+        }
     })
 }
+
+function removeActive (){
+    optionRef.forEach((item) => (item.classList.remove("active-option")))
+}
+
 
 function getValue(){
     if(billRef.value !== 0 || peopleRef !== 0){
